@@ -11,6 +11,9 @@ import pandas as pd
 from sklearn.model_selection import train_test_split
 from dataclasses import dataclass
 
+from src.components.data_transformation import DataTransformation
+from src.components.data_transformation import DataTransformationConfig
+
 '''
 These lines import additional modules: pandas as pd for data manipulation and analysis, train_test_split from sklearn.model_selection for splitting the dataset into training and test sets, and dataclass for creating a class with automatically generated special methods.
 '''
@@ -62,7 +65,10 @@ This code defines the initiate_data_ingestion method within the DataIngestion cl
 
 if __name__ == "__main__":
     obj = DataIngestion()
-    obj.initiate_data_ingestion()
+    train_data, test_data = obj.initiate_data_ingestion()
+    
+    data_transformaion = DataTransformation()
+    data_transformaion.initiate_data_transformation(train_data,test_data)
     
 '''
 This code checks if the script is being executed directly (not imported as a module) and creates an instance of DataIngestion. It then calls the initiate_data_ingestion method to start the data ingestion process
