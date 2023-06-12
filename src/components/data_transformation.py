@@ -1,3 +1,21 @@
+
+""" This code can be summarized as follows:
+
+The code imports necessary libraries and modules such as sys, dataclass, numpy, pandas, and various classes and functions from the sklearn library.
+It imports custom classes and functions from the project's source files.
+It defines a data class DataTransformationConfig with a configuration attribute preprocessor_obj_file_path that specifies the file path for saving a preprocessor object.
+It defines a class DataTransformation that handles data transformation operations.
+The __init__ method initializes an instance of the DataTransformation class and sets the data_transformation_config attribute to an instance of the DataTransformationConfig class.
+The get_data_transformer_object method defines a data transformation pipeline using ColumnTransformer from sklearn. It creates separate pipelines for numerical and categorical columns, performs imputation, one-hot encoding, and scaling operations.
+The method returns the constructed ColumnTransformer object.
+The initiate_data_transformation method takes the paths to training and test data as input. It reads the CSV files using pd.read_csv and obtains a preprocessing object by calling the get_data_transformer_object method.
+It specifies the target column name and selects the input features and target features from the data frames.
+The method applies the preprocessing object to transform the input features for both the training and test data.
+It combines the transformed input features with the target features into NumPy arrays.
+The method saves the preprocessing object using the save_object function.
+Finally, the method returns the transformed training and test arrays along with the file path of the saved preprocessing object. """
+
+
 import sys
 from dataclasses import dataclass
 
@@ -103,22 +121,21 @@ logging.info(f'Numerical columns: {numerical_columns}'): Logs the numerical colu
 logging.info(f'Categorical columns: {categorical_columns}'): Logs the categorical column names.
 return preprocessor: Returns the preprocessor object. Catches any exception that occurs in the try block and raises a CustomException with the captured exception and the sys module. """
             
-    def initiate_data_transformation(self, train_path,test_path):
-        """ Defines a method named initiate_data_transformation inside the DataTransformation class that takes train_path and test_path as parameters. """
+    def initiate_data_transformation(self,train_path,test_path):
+
         try:
             train_df=pd.read_csv(train_path)
             test_df=pd.read_csv(test_path)
-            
-            logging.info('Read train and test data completed')
-            logging.info('Obtaining preprocessing object')
-            """ train_df = pd.read_csv(train_path): Reads the training data from the CSV file specified by train_path using pd.read_csv.
-test_df = pd.read_csv(test_path): Reads the testing data from the CSV file specified by test_path using pd.read_csv.
-logging.info('Read train and test data completed'): Logs a message indicating that the train and test data have been successfully read.
-`logging.info('Obtaining preprocessing object """
-            
-            preprocessing_obj = self.get_data_transformer_object()
-            target_column_name='math_score'
+
+            logging.info("Read train and test data completed")
+
+            logging.info("Obtaining preprocessing object")
+
+            preprocessing_obj=self.get_data_transformer_object()
+
+            target_column_name="math_score"
             numerical_columns = ["writing_score", "reading_score"]
+
             input_feature_train_df=train_df.drop(columns=[target_column_name],axis=1)
             target_feature_train_df=train_df[target_column_name]
 
@@ -153,6 +170,14 @@ logging.info('Read train and test data completed'): Logs a message indicating th
             )
         except Exception as e:
             raise CustomException(e,sys)
+        """ Defines a method named initiate_data_transformation inside the DataTransformation class that takes train_path and test_path as parameters. 
+        
+         train_df = pd.read_csv(train_path): Reads the training data from the CSV file specified by train_path using pd.read_csv.
+test_df = pd.read_csv(test_path): Reads the testing data from the CSV file specified by test_path using pd.read_csv.
+logging.info('Read train and test data completed'): Logs a message indicating that the train and test data have been successfully read.
+`logging.info('Obtaining preprocessing object """
+            
+            
         
         """ preprocessing_obj = self.get_data_transformer_object(): Calls the get_data_transformer_object() method to obtain the preprocessor object for data transformation.
 target_column_name = 'math_score': Specifies the name of the target column in the dataset.

@@ -1,3 +1,22 @@
+""" 
+This code can be summarized as follows:
+
+The code imports necessary libraries, modules, and classes such as os, sys, CustomException, logging, pandas, train_test_split, and dataclass.
+It imports classes and configurations from other source files in the project.
+It defines a data class DataIngestionConfig with configuration attributes for file paths of train data, test data, and raw data.
+It defines a class DataIngestion that handles the data ingestion process.
+The __init__ method initializes an instance of the DataIngestion class and sets the ingestion_config attribute to an instance of the DataIngestionConfig class.
+The initiate_data_ingestion method reads a dataset from a CSV file and saves it as a dataframe. It creates directories for saving train, test, and raw data files if they don't exist.
+It splits the dataset into train and test sets using train_test_split.
+It saves the train and test sets as CSV files using the specified file paths.
+Finally, the method returns the file paths of the train and test data.
+In the main block, an instance of DataIngestion class is created and the initiate_data_ingestion method is called to obtain the train and test data file paths.
+An instance of DataTransformation class is created, and the initiate_data_transformation method is called to perform data transformation on the train and test data.
+An instance of ModelTrainer class is created, and the initiate_model_trainer method is called to train and evaluate models on the transformed data.
+The R-squared score of the best model is printed.
+Overall, this code implements the data ingestion, transformation, and model training process. It reads a dataset, splits it into train and test sets, saves them as CSV files, performs data transformation on the train and test data, trains multiple regression models, selects the best model based on evaluation results, and prints the R-squared score of the best model.
+"""
+
 import os 
 import sys 
 from src.exception import CustomException
@@ -14,6 +33,8 @@ from dataclasses import dataclass
 from src.components.data_transformation import DataTransformation
 from src.components.data_transformation import DataTransformationConfig
 
+from src.components.model_trainer import ModelTrainerConfig
+from src.components.model_trainer import ModelTrainer
 '''
 These lines import additional modules: pandas as pd for data manipulation and analysis, train_test_split from sklearn.model_selection for splitting the dataset into training and test sets, and dataclass for creating a class with automatically generated special methods.
 '''
@@ -64,11 +85,14 @@ This code defines the initiate_data_ingestion method within the DataIngestion cl
     
 
 if __name__ == "__main__":
-    obj = DataIngestion()
-    train_data, test_data = obj.initiate_data_ingestion()
-    
-    data_transformaion = DataTransformation()
-    data_transformaion.initiate_data_transformation(train_data,test_data)
+    obj=DataIngestion()
+    train_data,test_data=obj.initiate_data_ingestion()
+
+    data_transformation=DataTransformation()
+    train_arr,test_arr,_=data_transformation.initiate_data_transformation(train_data,test_data)
+
+    modeltrainer=ModelTrainer()
+    print(modeltrainer.initiate_model_trainer(train_arr,test_arr))
     
 '''
 This code checks if the script is being executed directly (not imported as a module) and creates an instance of DataIngestion. It then calls the initiate_data_ingestion method to start the data ingestion process
