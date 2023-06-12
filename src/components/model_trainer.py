@@ -78,6 +78,7 @@ class ModelTrainer:
                 "CatBoosting Regressor": CatBoostRegressor(verbose=False),
                 "AdaBoost Regressor": AdaBoostRegressor(),
             }
+            ## hyperparameters tunning
             params={
                 "Decision Tree": {
                     'criterion':['squared_error', 'friedman_mse', 'absolute_error', 'poisson'],
@@ -115,6 +116,33 @@ class ModelTrainer:
                 }
                 
             }
+            
+            """
+                The params dictionary in the code snippet provides the parameter values to be used for different machine learning models in the ModelTrainer class. Here's an explanation of each line within the params dictionary:
+
+"Decision Tree": Specifies the parameter values for the Decision Tree model.
+'criterion': A list of different criteria options for splitting the tree.
+"Random Forest": Specifies the parameter values for the Random Forest model.
+'n_estimators': A list of different numbers of estimators (trees) in the forest.
+"Gradient Boosting": Specifies the parameter values for the Gradient Boosting model.
+'learning_rate': A list of different learning rates for the boosting process.
+'subsample': A list of different subsample ratios for each boosting iteration.
+'n_estimators': A list of different numbers of estimators (boosting iterations).
+"Linear Regression": Specifies the parameter values for the Linear Regression model. Since the dictionary is empty, it means that no specific parameters are provided, and the model will use the default settings.
+"XGBRegressor": Specifies the parameter values for the XGBoost Regressor model.
+'learning_rate': A list of different learning rates for the boosting process.
+'n_estimators': A list of different numbers of estimators (boosting iterations).
+"CatBoosting Regressor": Specifies the parameter values for the CatBoost Regressor model.
+'depth': A list of different depths for the trees.
+'learning_rate': A list of different learning rates for the boosting process.
+'iterations': A list of different numbers of iterations.
+"AdaBoost Regressor": Specifies the parameter values for the AdaBoost Regressor model.
+'learning_rate': A list of different learning rates for the boosting process.
+'n_estimators': A list of different numbers of estimators (boosting iterations).
+These parameter values define the hyperparameters that will be used for each specific model during the model training and evaluation process. 
+            """
+            
+            
             
             model_report:dict = evaluate_models(X_train=X_train, y_train=y_train,X_test= X_test,y_test=y_test,
                                                models=models, param=params)
