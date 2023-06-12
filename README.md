@@ -58,4 +58,4 @@ The project structure is organized as follows:
 
 ## License
 
-This project is licensed under the MIT License. See the [LICENSE](LICENSE) file for more details.
+This project is licensed under the MIT License. See the [LICENSE](blob/main/LICENSE) file for more details.
