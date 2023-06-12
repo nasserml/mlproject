@@ -1,0 +1,145 @@
+<html>
+<body>
+    <div class="login">
+       <h1>Student Exam Performance Indicator</h1>
+   
+       <form action="{{ url_for('predict_datapoint')}}" method="post">
+        <h1>
+            <legend>Student Exam Performance Prediction</legend>
+        </h1>
+        <div class="mb-3">
+            <label class="form-label">Gender</label>
+            <select class="form-control" name="gender" placeholder="Enter you Gender" required>
+                <option class="placeholder" selected disabled value="">Select your Gender</option>
+                <option value="male">
+                    Male
+                </option>
+                <option value="female">
+                    Female
+                </option>
+            </select>
+        </div>
+        <div class="mb-3">
+            <label class="form-label">Race or Ethnicity</label>
+            <select class="form-control" name="ethnicity" placeholder="Enter you ethnicity" required>
+                <option class="placeholder" selected disabled value="">Select Ethnicity</option>
+                <option value="group A">
+                    Group A
+                </option>
+                <option value="group B">
+                    Group B
+                </option>
+                <option value="group C">
+                    Group C
+                </option>
+                <option value="group D">
+                    Group D
+                </option>
+                <option value="group E">
+                    Group E
+                </option>
+            </select>
+        </div>
+        <div class="mb-3">
+            <label class="form-label">Parental Level of Education</label>
+            <select class="form-control" name="parental_level_of_education"
+                placeholder="Enter you Parent Education" required>
+                <option class="placeholder" selected disabled value="">Select Parent Education</option>
+                <option value="associate's degree">
+                    associate's degree
+                </option>
+                <option value="bachelor's degree">
+                    bachelor's degree
+                </option>
+                <option value="high school">
+                    high school
+                </option>
+                <option value="master's degree">
+                    master's degree
+                </option>
+                <option value="some college">
+                    some college
+                </option>
+                <option value="some high school">
+                    some high school
+                </option>
+            </select>
+        </div>
+        <div class="mb-3">
+            <label class="form-label">Lunch Type</label>
+            <select class="form-control" name="lunch" placeholder="Enter you Lunch" required>
+                <option class="placeholder" selected disabled value="">Select Lunch Type</option>
+                <option value="free/reduced">
+                    free/reduced
+                </option>
+                <option value="standard">
+                    standard
+                </option>
+            </select>
+        </div>
+        <div class="mb-3">
+            <label class="form-label">Test preparation Course</label>
+            <select class="form-control" name="test_preparation_course" placeholder="Enter you Course"
+                required>
+                <option class="placeholder" selected disabled value="">Select Test_course</option>
+                <option value="none">
+                    None
+                </option>
+                <option value="completed">
+                    Completed
+                </option>
+            </select>
+        </div>
+        <div class="mb-3">
+            <label class="form-label">Writing Score out of 100</label>
+            <input class="form-control" type="number" name="reading_score"
+                placeholder="Enter your Reading score" min='0' max='100' />
+        </div>
+        <div class="mb-3">
+            <label class="form-label">Reading Score out of 100</label>
+            <input class="form-control" type="number" name="writing_score"
+                placeholder="Enter your Reading Score" min='0' max='100' />
+        </div>
+        <div class="mb-3">
+            <input class="btn btn-primary" type="submit" value="Predict your Maths Score" required />
+        </div>
+    </form>
+    <h2>
+       THE  prediction is {{results}}
+    </h2>
+   <body>
+</html>
+<!-- The code you provided is an HTML template that represents a web page form for predicting a student's exam performance. Here's a summary and explanation of the code:
+
+<html>: This tag represents the beginning of an HTML document.
+<body>: This tag represents the body of the HTML document.
+<div class="login">: This <div> element contains the form for the user to input their information.
+<h1>Student Exam Performance Indicator</h1>: This heading tag displays the title of the web page.
+<form action="{{ url_for('predict_datapoint')}}" method="post">: This <form> element defines a form that will submit data to the specified URL when the form is submitted. The action attribute specifies the URL, and the method attribute specifies the HTTP method (POST in this case).
+<h1><legend>Student Exam Performance Prediction</legend></h1>: This heading tag represents the title of the form.
+<div class="mb-3">: This <div> element represents a form group.
+<label class="form-label">: This <label> element represents a label for an input field.
+<select class="form-control" name="gender" placeholder="Enter you Gender" required>: This <select> element represents a dropdown menu for selecting the gender. The name attribute specifies the name of the input, the placeholder attribute provides a placeholder text, and the required attribute indicates that the field is required.
+<option>: These <option> elements represent the options within the dropdown menu for selecting gender.
+Similar <div> and <select> elements with <option> elements are used for selecting race or ethnicity, parental level of education, lunch type, and test preparation course.
+<input class="form-control" type="number" name="reading_score" placeholder="Enter your Reading score" min='0' max='100' />: This <input> element represents an input field for entering the reading score. The type attribute is set to "number" to enforce numeric input, and the min and max attributes specify the minimum and maximum values allowed.
+<input class="btn btn-primary" type="submit" value="Predict your Maths Score" required />: This <input> element represents a submit button for submitting the form.
+<h2>THE prediction is {{results}}</h2>: This heading tag displays the prediction results.
+Overall, the code represents an HTML form where a user can input various information related to a student's characteristics and exam scores. Upon submission, the form data will be sent to a specified URL for further processing, and the prediction results will be displayed on the web page. -->
+
+<!-- <html>: Begins the HTML document.
+<body>: Represents the body of the HTML document.
+<div class="login">: Defines a <div> element with the CSS class "login".
+<h1>Student Exam Performance Indicator</h1>: Displays a level 1 heading with the text "Student Exam Performance Indicator".
+<form action="{{ url_for('predict_datapoint')}}" method="post">: Starts a form with the action attribute set to "{{ url_for('predict_datapoint')}}" and the method attribute set to "post". The form will be submitted to the URL specified in the action attribute using the HTTP POST method.
+<h1><legend>Student Exam Performance Prediction</legend></h1>: Displays a level 1 heading with the text "Student Exam Performance Prediction" enclosed in a <legend> element.
+<div class="mb-3">: Defines a <div> element with the CSS class "mb-3".
+<label class="form-label">Gender</label>: Creates a label with the text "Gender".
+<select class="form-control" name="gender" placeholder="Enter you Gender" required>: Starts a dropdown menu with the CSS class "form-control" and the name attribute set to "gender". The placeholder attribute provides a placeholder text, and the required attribute indicates that the field is required.
+<option>: Defines an option within the dropdown menu.
+Similar <div>, <label>, and <select> elements with <option> elements are used to create dropdown menus for selecting race or ethnicity, parental level of education, lunch type, and test preparation course.
+<input class="form-control" type="number" name="reading_score" placeholder="Enter your Reading score" min='0' max='100' />: Creates an input field for entering the reading score. The type attribute is set to "number" to enforce numeric input, and the min and max attributes specify the allowed range.
+Another <div> and <input> element are used for entering the reading score.
+<input class="btn btn-primary" type="submit" value="Predict your Maths Score" required />: Displays a submit button with the text "Predict your Maths Score".
+<h2>THE prediction is {{results}}</h2>: Displays a level 2 heading that includes the prediction results, which will be dynamically inserted using the "{{results}}" placeholder.
+Overall, this HTML code represents a form with various dropdown menus and input fields for collecting student information related to exam performance. The form can be submitted to predict the student's maths score, and the prediction results will be displayed on the web page. -->

@@ -66,6 +66,24 @@ def evaluate_models(X_train, y_train,X_test,y_test,models,param):
     except Exception as e:
         raise CustomException(e, sys)
     
+
+""" The code you provided defines a function called load_object that loads a serialized object from a file using the pickle module in Python. Here's a breakdown of how the code works:
+
+The function load_object takes a single parameter, file_path, which represents the path to the file containing the serialized object.
+Inside the function, a try-except block is used to handle any potential exceptions that might occur during the loading process.
+The with statement is used to open the file specified by file_path in binary mode ("rb").
+Within the with block, pickle.load(file_obj) is called to deserialize and load the object from the file. The loaded object is then returned from the function.
+If any exception occurs during the loading process, the except block is executed.
+Inside the except block, a CustomException is raised, passing the original exception (e) and the sys module as arguments. This allows for custom exception handling or further error propagation with additional information.
+To use this load_object function, you need to provide the path to the file containing the serialized object as an argument. The function will then return the loaded object. Note that the code assumes that the file specified by file_path exists and is a valid serialized object file. """
+def load_object(file_path):
+    try:
+        with open(file_path, "rb") as file_obj:
+            return dill.load(file_obj)
+
+    except Exception as e:
+        raise CustomException(e, sys)
+    
 """ 
 import os: Imports the module for interacting with the operating system, providing functions for file and directory operations.
 import sys: Imports the module that provides access to some variables used or maintained by the interpreter and to functions that interact with the interpreter.
