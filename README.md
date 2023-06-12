@@ -48,7 +48,7 @@ The project structure is organized as follows:
 - [app.py](app.py): Main Flask application file for serving the web application.
 - [application.py](application.py): Wrapper file for running the Flask application.
 - [requirements.txt](requirements.txt): List of Python dependencies for the project.
-- [setup.py](setup.py): Setup script for the project.
+- [setup.py](/setup.py): Setup script for the project.
 
 ## Usage
 
